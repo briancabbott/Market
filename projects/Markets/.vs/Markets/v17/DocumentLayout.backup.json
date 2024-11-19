@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D5789F70-AE5C-4BE5-BD71-8DE36D6B595C}|Markets.Data\\Markets.Data.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.Data\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D5789F70-AE5C-4BE5-BD71-8DE36D6B595C}|Markets.Data\\Markets.Data.vcxproj|solutionrelative:Markets.Data\\dllmain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\redblacktree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|solutionrelative:Markets.DataStructures\\redblacktree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|solutionrelative:Markets.DataStructures\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\SparseMatrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|solutionrelative:Markets.DataStructures\\SparseMatrix.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|solutionrelative:Markets.DataStructures\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{356CCF17-4B64-4C00-B88E-A72823F020D5}|Markets.DataStructures\\Markets.DataStructures.vcxproj|solutionrelative:Markets.DataStructures\\framework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3290508-54C0-4C36-95C0-FB640187B96C}|Markets.App.Console\\Markets.App.Console.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.Console\\Markets.App.Console.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C3290508-54C0-4C36-95C0-FB640187B96C}|Markets.App.Console\\Markets.App.Console.vcxproj|solutionrelative:Markets.App.Console\\Markets.App.Console.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5EC9F3A7-FCBE-412D-97C3-43D6386E2959}|Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.vcxproj|C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5EC9F3A7-FCBE-412D-97C3-43D6386E2959}|Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.vcxproj|solutionrelative:Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +38,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pch.h",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\pch.h",
+              "RelativeDocumentMoniker": "Markets.DataStructures\\pch.h",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\pch.h",
+              "RelativeToolTip": "Markets.DataStructures\\pch.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T21:35:13.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "framework.h",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\framework.h",
+              "RelativeDocumentMoniker": "Markets.DataStructures\\framework.h",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\framework.h",
+              "RelativeToolTip": "Markets.DataStructures\\framework.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T21:35:12.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SparseMatrix.h",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\SparseMatrix.h",
+              "RelativeDocumentMoniker": "Markets.DataStructures\\SparseMatrix.h",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\SparseMatrix.h",
+              "RelativeToolTip": "Markets.DataStructures\\SparseMatrix.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T21:35:09.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Map.h",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\Map.h",
+              "RelativeDocumentMoniker": "Markets.DataStructures\\Map.h",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\Map.h",
+              "RelativeToolTip": "Markets.DataStructures\\Map.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T21:34:44.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "dllmain.cpp",
-              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.Data\\dllmain.cpp",
-              "RelativeDocumentMoniker": "Markets.Data\\dllmain.cpp",
-              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.Data\\dllmain.cpp",
-              "RelativeToolTip": "Markets.Data\\dllmain.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Title": "RedBlackTree.h",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\RedBlackTree.h",
+              "RelativeDocumentMoniker": "Markets.DataStructures\\RedBlackTree.h",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\RedBlackTree.h",
+              "RelativeToolTip": "Markets.DataStructures\\RedBlackTree.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T18:41:12.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Markets.App.WindowsDesktop.cpp",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp",
+              "RelativeDocumentMoniker": "Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp",
+              "RelativeToolTip": "Markets.App.WindowsDesktop\\Markets.App.WindowsDesktop.cpp",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-06T13:21:29.006Z",
+              "WhenOpened": "2024-11-18T18:19:55.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Markets.App.Console.cpp",
+              "DocumentMoniker": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.Console\\Markets.App.Console.cpp",
+              "RelativeDocumentMoniker": "Markets.App.Console\\Markets.App.Console.cpp",
+              "ToolTip": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.Console\\Markets.App.Console.cpp",
+              "RelativeToolTip": "Markets.App.Console\\Markets.App.Console.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-18T18:13:42.889Z",
               "EditorCaption": ""
             }
           ]
