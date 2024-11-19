@@ -129,6 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Markets.App.Console.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Markets.DataStructures\Markets.DataStructures.vcxproj">
+      <Project>{356ccf17-4b64-4c00-b88e-a72823f020d5}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

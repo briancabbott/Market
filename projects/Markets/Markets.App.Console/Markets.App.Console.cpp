@@ -2,10 +2,12 @@
 //
 
 #include <iostream>
+#include "../Markets.DataStructures/BinarySearchTree.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	auto tree = new BSTree<int, void>();
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

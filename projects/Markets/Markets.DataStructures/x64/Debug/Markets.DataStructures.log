@@ -3,11 +3,11 @@
   std.ixx
 c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
 c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.compat.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
-  (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.compat.ixx')
-  
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.compat.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
   (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.ixx')
+  
+  (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.compat.ixx')
   
   Compiling...
   std.ixx
