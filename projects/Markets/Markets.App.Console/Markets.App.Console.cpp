@@ -1,12 +1,18 @@
 // Markets.App.Console.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
-#include "../Markets.DataStructures/BinarySearchTree.h"
+
+import std;
+
+import Markets.DataStructures;
 
 int main()
 {
-	auto tree = new BSTree<int, void>();
+	std::println("Hello");
+	//std::println("Hello from Main");
+	//BSTree<int, int>* tree = new BSTree<int, int>();
+
+	//tree->InsertNode(0,0);
 
 }
 

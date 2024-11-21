@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\brian\\dev_space\\market\\projects\\markets\\markets.app.console\\markets.app.console.cpp",
+        "ProvidedModule": "",
+        "Includes": [],
+        "ImportedModules": [
+            {
+                "Name": "std",
+                "BMI": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\x64\\Debug\\microsoft\\STL\\std.ixx.ifc"
+            },
+            {
+                "Name": "Markets.DataStructures",
+                "BMI": "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\x64\\Debug\\Markets.DataStructures.cpp.ifc"
+            }
+        ],
+        "ImportedHeaderUnits": []
+    }
+}

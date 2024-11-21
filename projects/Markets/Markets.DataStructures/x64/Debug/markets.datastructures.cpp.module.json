@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Markets.DataStructures.cpp.obj",
+            "outputs": [
+                "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\x64\\Debug\\Markets.DataStructures.pdb",
+                "x64\\Debug\\",
+                "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.DataStructures\\x64\\Debug\\Markets.DataStructures.cpp.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "Markets.DataStructures",
+                    "source-path": "c:\\users\\brian\\dev_space\\market\\projects\\markets\\markets.datastructures\\markets.datastructures.cpp",
+                    "is-interface": true
+                }
+            ],
+            "requires": [
+                {
+                    "logical-name": "std"
+                }
+            ]
+        }
+    ]
+}

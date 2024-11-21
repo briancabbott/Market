@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\Markets.App.Console.obj",
+            "outputs": [
+                "C:\\Users\\brian\\dev_space\\Market\\projects\\Markets\\Markets.App.Console\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\"
+            ],
+            "requires": [
+                {
+                    "logical-name": "std"
+                },
+                {
+                    "logical-name": "Markets.DataStructures"
+                }
+            ]
+        }
+    ]
+}

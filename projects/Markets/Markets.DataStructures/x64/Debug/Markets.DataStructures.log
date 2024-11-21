@@ -1,25 +1,48 @@
 ﻿  Scanning sources for module dependencies...
-  std.compat.ixx
   std.ixx
+  std.compat.ixx
+  dllmain.cpp
+  Markets.DataStructures.ixx
+  Markets.DataStructures.cpp
 c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
 c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
-C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+c1xx : warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+\dllmain.cpp(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.compat.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+\Markets.DataStructures.cpp(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+\Markets.DataStructures.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+  (compiling source file '/dllmain.cpp')
+  
   (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.ixx')
   
   (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.compat.ixx')
+  
+  (compiling source file '/Markets.DataStructures.cpp')
+  
+  (compiling source file '/Markets.DataStructures.ixx')
   
   Compiling...
+  Markets.DataStructures.ixx
+  dllmain.cpp
   std.ixx
+\dllmain.cpp(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+  (compiling source file '/dllmain.cpp')
+  
+\Markets.DataStructures.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+  (compiling source file '/Markets.DataStructures.ixx')
+  
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
   (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.ixx')
   
+  Markets.DataStructures.cpp
   std.compat.ixx
+\Markets.DataStructures.cpp(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
+  (compiling source file '/Markets.DataStructures.cpp')
+  
 C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Tools\MSVC\14.43.34604\modules\std.compat.ixx(1,1): warning C5276: /experimental:ifcDebugRecords currently requires /Z7 to be enabled.  Please recompile with /Z7 enabled.
   (compiling source file '../../../../../../../Program%20Files/Microsoft%20Visual%20Studio/2022/Preview/VC/Tools/MSVC/14.43.34604/modules/std.compat.ixx')
   
-  pch.cpp
-  dllmain.cpp
-  RedBlackTree.cpp
-  Generating Code...
-  Markets.DataStructures.vcxproj -> C:\Users\brian\dev_space\Market\projects\Markets\x64\Debug\Markets.DataStructures.dll
+  Markets.DataStructures.vcxproj -> C:\Users\brian\dev_space\Market\projects\Markets\x64\Debug\Markets.DataStructures.lib
