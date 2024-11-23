@@ -1,0 +1,56 @@
+name: Build GraphBLAS C++ Specification
+on: [push]
+permissions:
+  contents: write
+jobs:
+  Build-GraphBLAS-Spec:
+    runs-on: ubuntu-latest
+    container:
+      image: benbrock/graphblas-cpp:build-docs-0.3
+    if: ${{ github.ref != 'refs/heads/gh-pages' }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Build spec
+        run: |
+          cd $GITHUB_WORKSPACE/markdown
+          make
+          mkdir graphblas-cpp-spec
+          cp graphblas.pdf graphblas-cpp-spec
+          cp graphblas.html graphblas-cpp-spec
+      - name: Check on spec
+        run: ls $GITHUB_WORKSPACE/markdown
+      - name: Archive GraphBLAS C++ Spec
+        uses: actions/upload-artifact@v2
+        with:
+          name: graphblas-cpp-spec
+          path: |
+            ${{ github.workspace }}/markdown/graphblas-cpp-spec
+
+  Deploy-GitHub-Pages:
+    runs-on: ubuntu-latest
+    needs: Build-GraphBLAS-Spec
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
+    - name: Checkout gh-pages
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: graphblas-cpp-spec
+    - name: Publish to GitHub Pages
+      run: |
+        cd $GITHUB_WORKSPACE
+        cp graphblas.html gh-pages/docs/index.html
+        cd gh-pages
+        find *
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        # Ignore errors because no updates returns an error status.
+        git commit --reset-author --amend -m "Update from github actions"
+        git push --force origin gh-pages
+

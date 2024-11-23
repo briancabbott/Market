@@ -1,0 +1,455 @@
+\subsection{Algebra methods}
+\label{Sec:AlgebraMethods}
+
+%-----------------------------------------------------------------------------
+
+\subsubsection{{\sf Type\_new}: Construct a new GraphBLAS (user-defined) type}
+\label{Sec:TypeNew}
+
+Creates a new user-defined GraphBLAS type. This type can then be used to create new
+operators, monoids, semirings, vectors and matrices.
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+        GrB_Info GrB_Type_new(GrB_Type  *utype,
+                              size_t     sizeof(ctype));
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.1in]
+    \item[{\sf utype}] ({\sf INOUT}) On successful return, contains a handle 
+                                     to the newly created user-defined GraphBLAS 
+                                     type object.
+	\item[{\sf ctype}] ({\sf IN})    A C type that defines the new GraphBLAS 
+                                     user-defined type.
+\end{itemize}
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]          not enough memory available for operation.
+\item[{\sf GrB\_NULL\_POINTER}]    {\sf utype} pointer is {\sf NULL}.
+\end{itemize}
+
+\paragraph{Description}
+
+Given a C type {\sf ctype}, the {\sf Type\_new} method returns in {\sf utype} a handle to
+a new GraphBLAS type that is equivalent to the C type.  Variables of this {\sf ctype} 
+must be a struct, union, or fixed-size array. In particular, given two variables, 
+{\tt src} and {\tt dst}, of type {\sf ctype}, the following operation must be a 
+valid way to copy the contents of {\tt src} to {\tt dst}:
+
+\begin{center}
+{\tt memcpy(\&dst, \&src, sizeof({\sf ctype}))}
+\end{center}
+
+A new, user-defined type {\sf utype} should be destroyed with a call to 
+{\sf GrB\_free(utype)} when no longer needed.
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
+
+%-----------------------------------------------------------------------------
+\subsubsection{{\sf UnaryOp\_new}: Construct a new GraphBLAS unary operator}
+
+Initializes a new GraphBLAS unary operator with a specified user-defined 
+function and its types (domains).
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+        GrB_Info GrB_UnaryOp_new(GrB_UnaryOp *unary_op,
+                                 void       (*unary_func)(void*, const void*),
+                                 GrB_Type     d_out,
+                                 GrB_Type     d_in);
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.1in]
+    \item[{\sf unary\_op}] ({\sf INOUT}) On successful return, contains a
+                           handle to the newly created GraphBLAS unary operator object.
+    \item[{\sf unary\_func}] ({\sf IN})  a pointer to a user-defined function that takes 
+                           one input parameter of {\sf d\_in}'s type
+			   and returns a value of {\sf d\_out}'s type, both passed as {\sf void} pointers.
+                           Specifically the signature of the function is expected to 
+                           be of the form:
+          \begin{verbatim}
+          void func(void *out, const void *in);
+          \end{verbatim}
+    \item[{\sf d\_out}] ({\sf IN})  The {\sf GrB\_Type} of the return value of the unary 
+                           operator being created.  Should be one of the predefined 
+                           GraphBLAS types in Table~\ref{Tab:PredefinedTypes}, or a 
+                           user-defined GraphBLAS type.
+    \item[{\sf d\_in}] ({\sf IN})  The {\sf GrB\_Type} of the input 
+                           argument of the unary operator being created.  Should be 
+                           one of the predefined GraphBLAS types in 
+                           Table~\ref{Tab:PredefinedTypes}, or a user-defined GraphBLAS type.
+\end{itemize}
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]          not enough memory available for operation.
+\item[{\sf GrB\_UNINITIALIZED\_OBJECT}]          any {\sf GrB\_Type} parameter (for
+                                    user-defined types) has not been
+                                    initialized by a call to {\sf GrB\_Type\_new}.
+\item[{\sf GrB\_NULL\_POINTER}]    {\sf unary\_op} or {\sf unary\_func}
+                                    pointers are {\sf NULL}.
+
+%\item[{\sf GrB\_DOMAIN\_MISMATCH}]  the types in the function pointer signature
+%                                    are not compatible with the {\sf GrB\_Type}
+%                                    parameters specified when user-defined types
+%                                    are specified.
+\end{itemize}
+
+\paragraph{Description}
+
+\newenvironment{code}{\tt}{}
+
+The {\sf UnaryOp\_new} method creates a new GraphBLAS unary operator
+\begin{quote}
+$f_u = \langle \mathbf{D}({\sf d\_out}), \mathbf{D}({\sf d\_in}), {\sf unary\_func} \rangle$
+\end{quote}
+and returns a handle to it in {\sf unary\_op}.
+
+The implementation of {\sf unary\_func} must be such that it works
+even if the {\sf d\_out} and {\sf d\_in} arguments are aliased.
+In other words, for all invocations of the function:
+\begin{quote}
+\begin{verbatim}
+unary_func(out,in);
+\end{verbatim}
+\end{quote}
+the value of {\sf out} must be the same as if the following code
+was executed:
+
+\begin{quote}
+\begin{code}
+    $\mathbf{D}({\sf d\_in})$ *tmp = malloc(sizeof($\mathbf{D}({\sf d\_in}$))); \\
+    memcpy(tmp,in,sizeof($\mathbf{D}({\sf d\_in}$))); \\
+    unary\_func(out,tmp); \\
+    free(tmp);
+\end{code}
+\end{quote}
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
+
+%-----------------------------------------------------------------------------
+
+\subsubsection{{\sf BinaryOp\_new}: Construct a new GraphBLAS binary operator}
+
+Initializes a new GraphBLAS binary operator with a specified user-defined 
+function and its types (domains).
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+        GrB_Info GrB_BinaryOp_new(GrB_BinaryOp *binary_op,
+                                  void        (*binary_func)(void*,
+                                                             const void*,
+                                                             const void*),
+                                  GrB_Type      d_out,
+                                  GrB_Type      d_in1,
+                                  GrB_Type      d_in2);
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.1in]
+    \item[{\sf binary\_op}] ({\sf INOUT}) On successful return, contains a 
+          handle to the newly created GraphBLAS binary operator object.
+    \item[{\sf binary\_func}] ({\sf IN}) A pointer to a user-defined function that 
+          takes two input parameters of types {\sf d\_in1} and {\sf d\_in2} and returns a value of
+		type {\sf d\_out}, all passed as {\sf void} pointers.
+          Specifically the signature of the function is expected to 
+          be of the form:
+      \begin{verbatim}
+      void func(void *out, const void *in1, const void *in2);
+      \end{verbatim}
+    \item[{\sf d\_out}]  ({\sf IN}) The {\sf GrB\_Type} of the return
+          value of the binary operator being created. Should be one of the
+          predefined GraphBLAS types in Table~\ref{Tab:PredefinedTypes}, or a 
+          user-defined GraphBLAS type.
+    \item[{\sf d\_in1}]  ({\sf IN}) The {\sf GrB\_Type} of the left hand 
+          argument of the binary operator being created. Should be one of the
+          predefined GraphBLAS types in Table~\ref{Tab:PredefinedTypes}, or a
+          user-defined GraphBLAS type.
+    \item[{\sf d\_in2}]  ({\sf IN}) The {\sf GrB\_Type} of the right hand 
+          argument of the binary operator being created. Should be one of the
+          predefined GraphBLAS types in Table~\ref{Tab:PredefinedTypes}, or a 
+          user-defined GraphBLAS type.
+\end{itemize}
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]          not enough memory available for operation.
+\item[{\sf GrB\_UNINITIALIZED\_OBJECT}]          the {\sf GrB\_Type} (for user-defined types)
+                                    has not been initialized by a call to {\sf GrB\_Type\_new}.
+\item[{\sf GrB\_NULL\_POINTER}]    {\sf binary\_op} or {\sf binary\_func} pointer is {\sf NULL}.
+
+%\item[{\sf GrB\_DOMAIN\_MISMATCH}]  the types in the function pointer signature are not   
+%                                    compatible with the {\sf GrB\_Type} parameters specified.
+\end{itemize}
+
+\paragraph{Description}
+
+The {\sf BinaryOp\_new} methods creates a new GraphBLAS binary operator
+\begin{quote}
+$f_b = \langle \mathbf{D}({\sf d\_out}), \mathbf{D}({\sf d\_in1}), \mathbf{D}({\sf d\_in2}), {\sf binary\_func} \rangle$
+\end{quote}
+and returns a handle to it in {\sf binary\_op}.
+
+The implementation of {\sf binary\_func} must be such that it works
+even if any of the {\sf d\_out}, {\sf d\_in1}, and {\sf d\_in2} arguments are aliased to each other.
+In other words, for all invocations of the function:
+\begin{quote}
+\begin{verbatim}
+binary_func(out,in1,in2);
+\end{verbatim}
+\end{quote}
+the value of {\sf out} must be the same as if the following code
+was executed:
+
+\begin{quote}
+\begin{code}
+    $\mathbf{D}({\sf d\_in1})$ *tmp1 = malloc(sizeof($\mathbf{D}({\sf d\_in1}$))); \\
+    $\mathbf{D}({\sf d\_in2})$ *tmp2 = malloc(sizeof($\mathbf{D}({\sf d\_in2}$))); \\
+    memcpy(tmp1,in1,sizeof($\mathbf{D}({\sf d\_in1}$))); \\
+    memcpy(tmp2,in2,sizeof($\mathbf{D}({\sf d\_in2}$))); \\
+    binary\_func(out,tmp1,tmp2); \\
+    free(tmp2); \\
+    free(tmp1);
+\end{code}
+\end{quote}
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
+
+%-----------------------------------------------------------------------------
+
+\subsubsection{{\sf Monoid\_new}: Construct a new GraphBLAS monoid}
+
+Creates a new monoid with specified binary operator and identity value.
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+        GrB_Info GrB_Monoid_new(GrB_Monoid    *monoid,
+                                GrB_BinaryOp   binary_op,
+                                <type>         identity);
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.1in]
+    \item[{\sf monoid}] ({\sf INOUT}) On successful return, contains a
+                         handle to the newly created GraphBLAS monoid object.
+    \item[{\sf binary\_op}] ({\sf IN}) An existing GraphBLAS associative binary 
+                         operator whose input and output types are the same.
+    \item[{\sf identity}]  ({\sf IN}) The value of the identity element of the 
+                         monoid. Must be the same type as the type used by the
+                         {\sf binary\_op} operator.
+\end{itemize}
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]   not enough memory available for operation.
+\item[{\sf GrB\_UNINITIALIZED\_OBJECT}]  the {\sf GrB\_BinaryOp} (for user-defined operators) has not been
+                                    initialized by a call to {\sf GrB\_BinaryOp\_new}.
+\item[{\sf GrB\_NULL\_POINTER}]     {\sf monoid} pointer is {\sf NULL}.
+\item[{\sf GrB\_DOMAIN\_MISMATCH}]  all three argument types of the binary operator and
+                                    the type of the identity value are not the same.
+\end{itemize}
+
+\paragraph{Description}
+
+The {\sf Monoid\_new} method creates a new monoid $M = \langle \mathbf{D}({\sf binary\_op}), {\sf binary\_op}, 
+{\sf identity} \rangle$ and returns a handle to it in {\sf monoid}.
+
+If {\sf binary\_op} is not associative, the results of GraphBLAS operations that
+require associativity of this monoid will be undefined.
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
+
+%-----------------------------------------------------------------------------
+\subsubsection{{\sf Semiring\_new}: Construct a new GraphBLAS semiring}
+
+Creates a new semiring with specified domain, operators, and elements.
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+        GrB_Info GrB_Semiring_new(GrB_Semiring  *semiring,
+                                  GrB_Monoid     add_op,
+                                  GrB_BinaryOp   mul_op);
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.1in]
+    \item[{\sf semiring}] ({\sf INOUT}) On successful return, contains a 
+    handle to the newly created GraphBLAS semiring.
+    \item[{\sf add\_op}]  ({\sf IN}) An existing GraphBLAS commutative monoid that 
+    specifies the addition operator and its identity.
+    \item[{\sf mul\_op}]  ({\sf IN}) An existing GraphBLAS binary operator that 
+    specifies the semiring's multiplication operator. In addition, {\sf mul\_op}'s
+    output domain, $\bDout({\sf mul\_op})$, must be the same as the {\sf add\_op}'s
+    domain $\mathbf{D}(\mbox{\sf add\_op})$.
+\end{itemize}
+
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]   not enough memory available for this method to complete.
+\item[{\sf GrB\_UNINITIALIZED\_OBJECT}]   the {\sf add\_op} (for user-define monoids) object has not been
+                                    initialized with a call to {\sf GrB\_Monoid\_new}
+				    or the {\sf mul\_op} (for user-defined operators) object has not been
+                                    not been initialized by a call to 
+                                    {\sf GrB\_BinaryOp\_new}.
+\item[{\sf GrB\_NULL\_POINTER}]    {\sf semiring} pointer is {\sf NULL}.
+\item[{\sf GrB\_DOMAIN\_MISMATCH}]  the output domain of {\sf mul\_op} does not
+                                    match the domain of the {\sf add\_op} monoid.
+\end{itemize}
+
+\paragraph{Description}
+
+The {\sf Semiring\_new} method creates a new semiring:
+\begin{quote}
+$S = \langle \bDout({\sf mul\_op}), 
+\bDin1({\sf mul\_op}), \bDin2({\sf mul\_op}), {\sf add\_op}, 
+{\sf mul\_op}, \mathbf{0}({\sf add\_op})\rangle$
+\end{quote}
+and returns a handle to it in 
+{\sf semiring}.  Note that $\bDout({\sf mul\_op})$ must be the same as 
+$\mathbf{D}({\sf add\_op})$.
+
+If {\sf add\_op} is not commutative, then GraphBLAS operations using this semiring
+will be undefined.
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
+
+%-----------------------------------------------------------------------------
+
+\subsubsection{{\sf IndexUnaryOp\_new}: Construct a new GraphBLAS index unary operator}
+
+Initializes a new GraphBLAS index unary operator with a specified user-defined 
+function and its types (domains).
+
+\paragraph{\syntax}
+
+\begin{verbatim}
+    GrB_Info GrB_IndexUnaryOp_new(GrB_IndexUnaryOp   *index_unary_op,
+                                  void (*index_unary_func)(void*,
+                                                           const void*,
+                                                           GrB_Index,
+                                                           GrB_Index,
+                                                           const void*),
+                                  GrB_Type            d_out,
+                                  GrB_Type            d_in1,
+                                  GrB_Type            d_in2);
+\end{verbatim}
+
+\paragraph{Parameters}
+
+\begin{itemize}[leftmargin=1.2in]
+    \item[{\sf index\_unary\_op}] ({\sf INOUT}) On successful return, contains a 
+          handle to the newly created GraphBLAS index unary operator object.
+    \item[{\sf index\_unary\_func}] ({\sf IN}) A pointer to a user-defined 
+          function that takes input parameters of types {\sf d\_in1}, 
+          {\sf GrB\_Index}, {\sf GrB\_Index} and {\sf d\_in2}
+          and returns a value of type {\sf d\_out}.  Except for the {\sf GrB\_Index}
+          parameters, all are passed as {\sf void} pointers.
+          Specifically the signature of the function is expected to 
+          be of the form:
+      \begin{verbatim}
+      void func(void       *out,
+                const void *in1,
+                GrB_Index   row_index,
+                GrB_Index   col_index, 
+                const void *in2);
+      \end{verbatim}
+    \item[{\sf d\_out}]  ({\sf IN}) The {\sf GrB\_Type} of the return
+          value of the index unary operator being created. Should be one of the
+          predefined GraphBLAS types in Table~\ref{Tab:PredefinedTypes}, or a 
+          user-defined GraphBLAS type.
+    \item[{\sf d\_in1}]  ({\sf IN}) The {\sf GrB\_Type} of the first input 
+          argument of the index unary operator being created and corresponds to
+          the stored values of the {\sf GrB\_Vector} or {\sf GrB\_Matrix} being
+          operated on. Should be one of the predefined GraphBLAS types in
+          Table~\ref{Tab:PredefinedTypes}, or a user-defined GraphBLAS type.
+    \item[{\sf d\_in2}]  ({\sf IN}) The {\sf GrB\_Type} of the last input
+          argument of the index unary operator being created and corresponds to
+          a scalar provided by the GraphBLAS operation that uses this operator.
+          Should be one of the predefined GraphBLAS types in 
+          Table~\ref{Tab:PredefinedTypes}, or a user-defined GraphBLAS type.
+\end{itemize}
+
+\paragraph{Return Values}
+
+\begin{itemize}[leftmargin=2.1in]
+\item[{\sf GrB\_SUCCESS}]           operation completed successfully.
+\item[{\sf GrB\_PANIC}]             unknown internal error.
+\item[{\sf GrB\_OUT\_OF\_MEMORY}]          not enough memory available for operation.
+\item[{\sf GrB\_UNINITIALIZED\_OBJECT}]          the {\sf GrB\_Type} (for user-defined types)
+                                    has not been initialized by a call to {\sf GrB\_Type\_new}.
+\item[{\sf GrB\_NULL\_POINTER}]    {\sf index\_unary\_op} or {\sf index\_unary\_func} pointer is {\sf NULL}.
+
+%\jose{Domain mistmatch not possible.}
+%\item[{\sf GrB\_DOMAIN\_MISMATCH}]  the types in the function pointer signature are not   
+%                                    compatible with the {\sf GrB\_Type} parameters specified.
+\end{itemize}
+
+\paragraph{Description}
+
+The {\sf IndexUnaryOp\_new} methods creates a new GraphBLAS index unary operator
+\begin{quote}
+$f_{i} = \langle \mathbf{D}({\sf d\_out}), \mathbf{D}({\sf d\_in1}), \mathbf{D}({\sf GrB\_Index}), \mathbf{D}({\sf GrB\_Index}), \mathbf{D}({\sf d\_in2}), {\sf index\_unary\_func} \rangle$
+\end{quote}
+and returns a handle to it in {\sf index\_unary\_op}.
+
+The implementation of {\sf index\_unary\_func} must be such that it works
+even if any of the {\sf d\_out}, {\sf d\_in1}, and {\sf d\_in2} arguments are aliased to each other.
+In other words, for all invocations of the function:
+\begin{quote}
+\begin{verbatim}
+index_unary_func(out,in1,row_index,col_index,n,in2);
+\end{verbatim}
+\end{quote}
+the value of {\sf out} must be the same as if the following code
+was executed (shown here for matrices):
+
+\begin{quote}
+\begin{code}
+    GrB\_Index row\_index = ...;\\
+    GrB\_Index col\_index = ...;\\
+    $\mathbf{D}({\sf d\_in1})$ *tmp1 = malloc(sizeof($\mathbf{D}({\sf d\_in1}$))); \\
+    $\mathbf{D}({\sf d\_in2})$ *tmp2 = malloc(sizeof($\mathbf{D}({\sf d\_in2}$))); \\
+    memcpy(tmp1,in1,sizeof($\mathbf{D}({\sf d\_in1}$))); \\
+    memcpy(tmp2,in2,sizeof($\mathbf{D}({\sf d\_in2}$))); \\
+    index\_unary\_func(out,tmp1,row\_index,col\_index,tmp2); \\
+    free(tmp2); \\
+    free(tmp1);
+\end{code}
+\end{quote}
+
+It is not an error to call this method more than once on the same variable;  
+however, the handle to the previously created object will be overwritten. 
