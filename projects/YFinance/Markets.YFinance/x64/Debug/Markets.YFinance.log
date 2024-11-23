@@ -1,2 +1,7 @@
-﻿  const.cpp
-  Markets.YFinance.vcxproj -> C:\Users\brian\dev_space\Market\projects\YFinance\x64\Debug\Markets.YFinance.dll
+﻿  pch.cpp
+  base.cpp
+  cache.cpp
+  const.cpp
+  dllmain.cpp
+  Generating Code...
+  Markets.YFinance.vcxproj -> C:\Users\brian\dev_space\Market\projects\Markets\x64\Debug\Markets.YFinance.dll
